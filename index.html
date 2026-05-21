@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Muhammad Hawari — Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#080c14;color:#c8d3e8;font-family:'Syne',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem}
+.card{background:#0d1626;border:0.5px solid rgba(56,189,248,0.1);border-radius:20px;padding:2.5rem;width:100%;max-width:680px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;width:350px;height:350px;background:rgba(56,189,248,0.05);border-radius:50%;filter:blur(80px);top:-80px;right:-80px;pointer-events:none}
+.card::after{content:'';position:absolute;width:250px;height:250px;background:rgba(139,92,246,0.05);border-radius:50%;filter:blur(80px);bottom:-60px;left:-60px;pointer-events:none}
+
+.header{display:flex;align-items:center;gap:1.5rem;margin-bottom:2rem}
+.avatar{width:68px;height:68px;border-radius:50%;background:#0f2339;border:1.5px solid rgba(56,189,248,0.3);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:18px;font-weight:700;color:#38bdf8;flex-shrink:0}
+.name{font-size:24px;font-weight:700;color:#e2e8f0;letter-spacing:-0.5px}
+.role{font-size:11px;color:#4a90a4;font-family:'Space Mono',monospace;margin-top:5px;letter-spacing:0.08em}
+
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:2rem}
+.tag{font-size:11px;font-family:'Space Mono',monospace;padding:4px 12px;border-radius:20px;border:0.5px solid;letter-spacing:0.04em}
+.tag-blue{background:rgba(56,189,248,0.07);border-color:rgba(56,189,248,0.2);color:#7dd3fc}
+.tag-violet{background:rgba(139,92,246,0.07);border-color:rgba(139,92,246,0.2);color:#a78bfa}
+.tag-slate{background:rgba(100,116,139,0.08);border-color:rgba(100,116,139,0.2);color:#94a3b8}
+
+.section-label{font-size:10px;font-family:'Space Mono',monospace;color:#4a6a7a;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.section-label::after{content:'';flex:1;height:0.5px;background:rgba(56,189,248,0.1)}
+.section{margin-bottom:2rem}
+
+.stack-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px}
+.stack-item{background:rgba(15,26,46,0.8);border:0.5px solid rgba(56,189,248,0.1);border-radius:8px;padding:12px 8px 10px;display:flex;flex-direction:column;align-items:center;gap:6px;transition:all 0.2s;cursor:default}
+.stack-item:hover{border-color:rgba(56,189,248,0.35);background:rgba(56,189,248,0.06);transform:translateY(-2px)}
+.stack-icon{font-size:20px}
+.stack-name{font-size:10px;font-family:'Space Mono',monospace;color:#64748b}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat-card{background:rgba(15,26,46,0.6);border:0.5px solid rgba(255,255,255,0.05);border-radius:10px;padding:1rem}
+.stat-label{font-size:10px;font-family:'Space Mono',monospace;color:#4a6a7a;letter-spacing:0.08em;margin-bottom:10px}
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.bar-lang{font-size:10px;font-family:'Space Mono',monospace;color:#64748b;width:44px}
+.bar-track{flex:1;height:3px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden}
+.bar-fill{height:100%;border-radius:2px;width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.b-php{background:#7c86c7}
+.b-java{background:#e88c3a}
+.b-js{background:#d4b84a}
+.b-sql{background:#4aada8}
+.env-list{display:flex;flex-direction:column;gap:8px}
+.env-row{display:flex;align-items:center;gap:10px;font-size:12px;font-family:'Space Mono',monospace;color:#64748b}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.dot-on{background:#4aada8;box-shadow:0 0 8px rgba(74,173,168,0.6)}
+.dot-off{background:#1e2d3d}
+
+.interest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.interest-card{background:rgba(15,26,46,0.6);border:0.5px solid rgba(255,255,255,0.05);border-radius:10px;padding:1rem}
+.interest-icon{font-size:22px;margin-bottom:8px}
+.interest-title{font-size:13px;font-weight:500;color:#cbd5e1;margin-bottom:8px}
+.interest-items{font-size:11px;font-family:'Space Mono',monospace;color:#4a6a7a;line-height:2.1}
+.interest-items span{display:block}
+
+.quote{border-left:2px solid rgba(56,189,248,0.25);padding:.875rem 1.25rem;background:rgba(56,189,248,0.03);border-radius:0 8px 8px 0;margin-bottom:2rem}
+.quote p{font-size:13px;color:#7a9ab5;font-style:italic;line-height:1.8}
+
+.footer{text-align:center;padding-top:1.5rem;border-top:0.5px solid rgba(255,255,255,0.05);font-size:11px;font-family:'Space Mono',monospace;color:#2a3a4a;letter-spacing:0.1em}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <div class="avatar">MH</div>
+    <div>
+      <div class="name">Muhammad Hawari</div>
+      <div class="role">hawari-95 · tech student</div>
+    </div>
+  </div>
+
+  <div class="tags">
+    <span class="tag tag-blue">Laravel · PHP</span>
+    <span class="tag tag-violet">Java · MySQL</span>
+    <span class="tag tag-slate">Dark mode first</span>
+    <span class="tag tag-blue">IEM Enthusiast</span>
+    <span class="tag tag-violet">Story Game Enjoyer</span>
+  </div>
+
+  <div class="section">
+    <div class="section-label">tech stack</div>
+    <div class="stack-grid">
+      <div class="stack-item"><span class="stack-icon">🔴</span><span class="stack-name">Laravel</span></div>
+      <div class="stack-item"><span class="stack-icon">🐘</span><span class="stack-name">PHP</span></div>
+      <div class="stack-item"><span class="stack-icon">☕</span><span class="stack-name">Java</span></div>
+      <div class="stack-item"><span class="stack-icon">🗄️</span><span class="stack-name">MySQL</span></div>
+      <div class="stack-item"><span class="stack-icon">🟨</span><span class="stack-name">JavaScript</span></div>
+      <div class="stack-item"><span class="stack-icon">🌊</span><span class="stack-name">Tailwind</span></div>
+      <div class="stack-item"><span class="stack-icon">🧠</span><span class="stack-name">IntelliJ</span></div>
+      <div class="stack-item"><span class="stack-icon">📝</span><span class="stack-name">VSCode</span></div>
+      <div class="stack-item"><span class="stack-icon">🌿</span><span class="stack-name">Git</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">language usage</div>
+    <div class="two-col">
+      <div class="stat-card">
+        <div class="stat-label">languages</div>
+        <div class="bar-row"><span class="bar-lang">PHP</span><div class="bar-track"><div class="bar-fill b-php" data-w="72"></div></div></div>
+        <div class="bar-row"><span class="bar-lang">Java</span><div class="bar-track"><div class="bar-fill b-java" data-w="55"></div></div></div>
+        <div class="bar-row"><span class="bar-lang">JS</span><div class="bar-track"><div class="bar-fill b-js" data-w="40"></div></div></div>
+        <div class="bar-row"><span class="bar-lang">SQL</span><div class="bar-track"><div class="bar-fill b-sql" data-w="30"></div></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">coding env</div>
+        <div class="env-list">
+          <div class="env-row"><span class="dot dot-on"></span>Dark theme · always</div>
+          <div class="env-row"><span class="dot dot-on"></span>Music · always on</div>
+          <div class="env-row"><span class="dot dot-on"></span>Late night sessions</div>
+          <div class="env-row"><span class="dot dot-off"></span>Light mode · never</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">current interests</div>
+    <div class="interest-grid">
+      <div class="interest-card">
+        <div class="interest-icon">🎧</div>
+        <div class="interest-title">IEM & Audio</div>
+        <div class="interest-items">
+          <span>CCA Polaris</span>
+          <span>FiiO JA11</span>
+          <span>EQ & tuning</span>
+        </div>
+      </div>
+      <div class="interest-card">
+        <div class="interest-icon">🎵</div>
+        <div class="interest-title">Music</div>
+        <div class="interest-items">
+          <span>J-Pop · J-Rock</span>
+          <span>Anime OSTs</span>
+          <span>Instrumentals</span>
+        </div>
+      </div>
+      <div class="interest-card">
+        <div class="interest-icon">🎮</div>
+        <div class="interest-title">Games</div>
+        <div class="interest-items">
+          <span>Story-rich</span>
+          <span>Open worlds</span>
+          <span>Emotional OSTs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote">
+    <p>"Good music, immersive stories, and clean code make the perfect atmosphere."</p>
+  </div>
+
+  <div class="footer">hawari-95 · built with late-night energy</div>
+</div>
+
+<script>
+setTimeout(()=>{
+  document.querySelectorAll('.bar-fill').forEach(b=>{
+    b.style.width = b.dataset.w + '%';
+  });
+}, 300);
+</script>
+</body>
+</html>
